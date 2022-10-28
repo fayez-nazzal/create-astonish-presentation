@@ -1,0 +1,23 @@
+{
+    "name": "create-astonish-presentation",
+    "version": "1.0.0",
+    "description": "Start building your presentation using ReactJS and Astonish",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "keywords": [
+        "presentation",
+        "slides",
+        "ReactJS",
+        "Astonish"
+    ],
+    "author": "Fayez Nazzal",
+    "license": "MIT",
+    "bin": {
+        "create-astonish-presentation": "bin/index.js"
+    },
+    "dependencies": {
+        "chalk": "^4.1.2"
+    }
+}
