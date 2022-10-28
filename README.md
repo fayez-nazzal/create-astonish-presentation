@@ -19,3 +19,4 @@ Create a javascript starter presentation with `javascript` and `npm`
 ```
 
 # Screenshot
+![image](https://user-images.githubusercontent.com/49946791/198718282-e7330931-1a18-44b6-ac6f-bf132488b7c8.png)
