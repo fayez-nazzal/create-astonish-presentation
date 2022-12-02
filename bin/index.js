@@ -2,6 +2,8 @@
 
 const { exec } = require("child_process");
 const chalk = require("chalk");
+const { argv } = require("process");
+const prompt = require('prompt-sync')();
 
 const log = console.log;
 
@@ -16,24 +18,12 @@ exec("git --version", (err) => {
     const template = process.argv.includes("--template")
         ? process.argv[process.argv.indexOf("--template") + 1]
         : "starter";
-
+    
     // find the --yarn flag
     const yarn = process.argv.includes("--yarn");
 
     // find the --typescript flag
     const typescript = process.argv.includes("--typescript");
-
-    // get the first arg
-    const projectName = process.argv[2];
-
-    if (
-        !projectName ||
-        !projectName.trim() ||
-        projectName.match(/[^a-zA-Z0-9-_]/)
-    ) {
-        log(chalk.red("Please provide a project name\r\n"));
-        process.exit(1);
-    }
 
     let repoName = `astonish-${template}`;
 
@@ -43,7 +33,6 @@ exec("git --version", (err) => {
 
     repoName += "-template";
 
-    const repoLink = `https://github.com/fayez-nazzal/${repoName}.git ${projectName}`;
 
     log("\r\n");
 
@@ -61,7 +50,15 @@ exec("git --version", (err) => {
             chalk.blue.bold("\r\n")
     );
 
+    let repoLink = `https://github.com/fayez-nazzal/${repoName}.git`;
+
     log(chalk.blue(`Template repo: ${repoLink}\r\n`));
+
+    const argsWithoutFlags = process.argv.slice(1).filter((arg) => arg.match(/(\-\-)|[\/\\]/) === null);
+    
+    const projectName = argsWithoutFlags[argsWithoutFlags.length - 1] ?? prompt('Enter project name: ');
+    
+    repoLink += ` ${projectName}`;
 
     // clone the template repo
     log(chalk.blue("Cloning the template repo...\r\n"));
